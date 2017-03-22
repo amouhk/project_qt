@@ -4,6 +4,7 @@
 #include <QTransform>
 #include "commandstationadd.h"
 #include "commandstationdelete.h"
+#include "commandstationmove.h"
 #include <QDebug>
 #include <QMenu>
 
