@@ -3,6 +3,7 @@
 #include <iostream>
 #include <QTransform>
 #include "commandstationadd.h"
+#include "commandstationdelete.h"
 #include <QDebug>
 #include <QMenu>
 
@@ -82,7 +83,8 @@ namespace Model
                                     .arg(l_currentPosition.rx()).arg(l_currentPosition.ry())));
 
             // Positionnement de la station
-            mp_selectedStation->setPos(l_currentPosition);
+            CommandStationMove* l_cmdStationMove = new CommandStationMove(mp_selectedStation, mp_selectedStation->lastPosition(), mouseEvent->scenePos());
+            mp_undoStack->push(l_cmdStationMove);
 
         }
 
@@ -135,8 +137,8 @@ namespace Model
             // Exec thread bloquante pour l'usager
             if ( l_deleteMenu.exec(ctxEvent->screenPos()) ==  lp_deleteAction)
             {
-                removeItem(mp_selectedStation);
-                delete mp_selectedStation;
+                CommandStationDelete* cmdStationDel = new CommandStationDelete(this, mp_selectedStation);
+                mp_undoStack->push(cmdStationDel);
 
                 emit( message(QString("Delete Station at %1 %2").arg(l_currentPosition.rx())
                                                                 .arg(l_currentPosition.ry())));
