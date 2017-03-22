@@ -1,6 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <iostream>
+#include <QMenu>
+#include <QAction>
+#include <QFileDialog>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -15,7 +18,10 @@ MainWindow::MainWindow(QWidget *parent) :
     mp_undoView  = 0;
 
     /*** MenuBar ***/
-    menuBar()->addMenu(QString("&File"));
+    QMenu* lp_fileMenu = menuBar()->addMenu(QString("&File"));
+    QAction* lp_saveAction = lp_fileMenu->addAction(QString("Save as ..."), this, SLOT(fileSaveAs()));
+    lp_saveAction->setShortcut(QKeySequence::SaveAs);
+
     QMenu* l_editMenu = menuBar()->addMenu( "&Edit" );
     QAction* lp_undoAction = mp_undoStack->createUndoAction( this );
     QAction* lp_redoAction = mp_undoStack->createRedoAction( this );
@@ -84,4 +90,25 @@ void MainWindow::showUndoStack()
         mp_undoView->setGeometry(geometry().x() + geometry().width() + 2, geometry().y(), 50, 100);
     }
     mp_undoView->show();
+}
+
+//--------------------------------------------------------------------------------
+bool MainWindow::fileSaveAs()
+{
+    QString l_outputFilename = QFileDialog::getSaveFileName(this, QString("Save Station"),
+                                                    QApplication::applicationDirPath(), QString("(*.xml)"));
+
+    if (l_outputFilename.isEmpty())
+    {
+        showMessage(QString("Invalid Filename"));
+        return false;
+    }
+    else
+    {
+        QFile l_outputFile(l_outputFilename);
+        if ( l_outputFile.open(QIODevice::WriteOnly) )
+        {
+            showMessage(QString("File %1 is not written yet").arg(l_outputFilename));
+        }
+    }
 }

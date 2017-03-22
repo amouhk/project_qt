@@ -25,6 +25,7 @@ public:
 public slots:
     void showMessage(QString);  /*!< Slot de reception des messages*/
     void showUndoStack();       /*!< Slot de l'action undo */
+    bool fileSaveAs();
 
 private:
     Ui::MainWindow *ui;
