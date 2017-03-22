@@ -16,12 +16,18 @@ MainWindow::MainWindow(QWidget *parent) :
 
     /*** MenuBar ***/
     menuBar()->addMenu(QString("&File"));
-    menuBar()->addMenu(QString("&Edit"));
+    QMenu* l_editMenu = menuBar()->addMenu( "&Edit" );
+    QAction* lp_undoAction = mp_undoStack->createUndoAction( this );
+    QAction* lp_redoAction = mp_undoStack->createRedoAction( this );
+    lp_undoAction->setShortcut( QKeySequence::Undo );
+    lp_redoAction->setShortcut( QKeySequence::Redo );
+    l_editMenu->addAction( lp_undoAction );
+    l_editMenu->addAction( lp_redoAction );
 
     // Modification du menu View
     QMenu* l_viewMenu = menuBar()->addMenu(QString("&View"));
     l_viewMenu->addAction(QString("Undo Stack"), this, SLOT(showUndoStack()));
-    //menuBar()->addMenu(QString("&View"));
+
 
     menuBar()->addMenu(QString("&Simulate"));
     menuBar()->addMenu(QString("&Help"));
