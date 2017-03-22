@@ -4,6 +4,7 @@
 namespace Model
 {
     CommandStationAdd::CommandStationAdd(Scene *scene, QPointF point)
+        : QUndoCommand()
     {
         std::cout << "Create : Station at " << point.rx() << point.ry() << std::endl;
 
@@ -33,7 +34,7 @@ namespace Model
 
     void CommandStationAdd::redo()
     {
-        std::cout << "CommandStationAdd::redo" << std::endl;
+        std::cout << "Call : CommandStationAdd::redo" << std::endl;
         mp_scene->addItem(mp_station);
     }
 
@@ -41,7 +42,7 @@ namespace Model
 
     void CommandStationAdd::undo()
     {
-        std::cout << "CommandStationAdd::undo" << std::endl;
+        std::cout << "Call : CommandStationAdd::undo" << std::endl;
         mp_scene->removeItem(mp_station);
     }
 
