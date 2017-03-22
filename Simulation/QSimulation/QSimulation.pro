@@ -15,10 +15,12 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     scene.cpp \
-    station.cpp
+    station.cpp \
+    commandstationadd.cpp
 
 HEADERS  += mainwindow.h \
     scene.h \
-    station.h
+    station.h \
+    commandstationadd.h
 
 FORMS    += mainwindow.ui

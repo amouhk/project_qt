@@ -2,6 +2,7 @@
 #include "station.h"
 #include <iostream>
 #include <QTransform>
+#include "commandstationadd.h"
 #include <QDebug>
 #include <QMenu>
 
@@ -52,7 +53,9 @@ namespace Model
             if (mp_selectedStation == 0)
             {
                 mp_selectedStation = new Station(0, l_x, l_y);
-                addItem(mp_selectedStation);
+                //addItem(mp_selectedStation);
+                CommandStationAdd *lp_addCmd = new CommandStationAdd(this, l_position);
+                mp_undoStack->push(lp_addCmd);
 
                 // Emission du message pour la status bar.
                 QString l_message("Add Station at %1 %2");

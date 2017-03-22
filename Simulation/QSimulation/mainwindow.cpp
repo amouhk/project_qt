@@ -29,7 +29,7 @@ MainWindow::MainWindow(QWidget *parent) :
     /*** Notre Scene ***/
 
     //Creation du modele(Scene) et de la vue(View)
-    mp_scene = new Model::Scene(this);
+    mp_scene = new Model::Scene(this, mp_undoStack);
     QGraphicsView* lp_view = new QGraphicsView(mp_scene, this);
 
     // Ajout de la vue sur la fenetre
