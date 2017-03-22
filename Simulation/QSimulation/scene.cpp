@@ -53,9 +53,9 @@ namespace Model
             if (mp_selectedStation == 0)
             {
                 mp_selectedStation = new Station(0, l_x, l_y);
-                //addItem(mp_selectedStation);
-                CommandStationAdd *lp_addCmd = new CommandStationAdd(this, l_position);
-                mp_undoStack->push(lp_addCmd);
+
+                CommandStationAdd *lp_addCommand = new CommandStationAdd(this, l_position);
+                mp_undoStack->push(lp_addCommand);
 
                 // Emission du message pour la status bar.
                 QString l_message("Add Station at %1 %2");
@@ -66,11 +66,6 @@ namespace Model
             mp_selectedStation->setLastPosition(l_position);
 
         }
-//        else
-//        {
-//            // Click droit
-//            emit( message(QString("Unsuable button")));
-//        }
     }
 
     //---------------------------------------------------------------------------
