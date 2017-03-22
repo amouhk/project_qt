@@ -4,6 +4,7 @@
 #include <QMenu>
 #include <QAction>
 #include <QFileDialog>
+#include <QTextStream>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -108,6 +109,16 @@ bool MainWindow::fileSaveAs()
         QFile l_outputFile(l_outputFilename);
         if ( l_outputFile.open(QIODevice::WriteOnly) )
         {
+            // creer le stream de sortie
+             QTextStream l_outputStream(&l_outputFile);
+
+            //creer un QDomDocumlenbt
+            QDomDocument* l_xmlDocument = new QDomDocument("");
+
+            mp_scene->toXML(l_xmlDocument);
+
+            l_outputStream << *l_xmlDocument;
+
             showMessage(QString("File %1 is not written yet").arg(l_outputFilename));
         }
         return true;

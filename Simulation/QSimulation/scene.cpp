@@ -2,6 +2,7 @@
 #include "station.h"
 #include <iostream>
 #include <QTransform>
+#include <QDomDocument>
 #include "commandstationadd.h"
 #include "commandstationdelete.h"
 #include "commandstationmove.h"
@@ -31,6 +32,22 @@ namespace Model
     Scene::~Scene()
     {
         std::cout << "Delete " <<  metaObject()->className() << std::endl;
+    }
+
+    //---------------------------------------------------------------------------
+
+    void Scene::toXML(QDomNode* node)
+    {
+        // node : la racine du flux xml
+
+        QDomDocument* l_xmlDoc = (QDomDocument*)(node);
+
+        // creer la base <scene>
+        QDomElement l_sceneTag = l_xmlDoc->createElement(QString("scene"));
+        l_xmlDoc->appendChild(l_sceneTag);
+
+        // TODO: serealiser plus tard le reste
+
     }
 
     //---------------------------------------------------------------------------

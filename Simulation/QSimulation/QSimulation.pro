@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui xml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -16,11 +16,15 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     scene.cpp \
     station.cpp \
-    commandstationadd.cpp
+    commandstationadd.cpp \
+    commandstationdelete.cpp \
+    commandstationmove.cpp
 
 HEADERS  += mainwindow.h \
     scene.h \
     station.h \
-    commandstationadd.h
+    commandstationadd.h \
+    commandstationdelete.h \
+    commandstationmove.h
 
 FORMS    += mainwindow.ui

@@ -8,6 +8,7 @@ class Scene;
 #include <QGraphicsSceneMouseEvent>
 #include "station.h"
 #include <QUndoStack>
+#include <QDomNode>
 
 namespace Model
 {
@@ -18,6 +19,7 @@ class Scene : public QGraphicsScene
 public:
     explicit Scene(QObject *parent = 0, QUndoStack * undoStack = 0);
     virtual ~Scene();
+    void toXML(QDomNode* node);  /*!< recriture: cpp to xml */
 
 signals:
     void message(QString);  /*!< Signal de la scene pour la bar de status */
