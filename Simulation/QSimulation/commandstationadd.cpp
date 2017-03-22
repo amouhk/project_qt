@@ -10,7 +10,7 @@ namespace Model
         mp_scene   = scene;
         mp_station = new Station(0, point.rx(), point.ry());
 
-        QUndoCommand::setText(QString("Add station at %1 %2").arg(point.rx()).arg(point.ry()));
+        QUndoCommand::setText(QString("Add station at (%1, %2)").arg(point.rx()).arg(point.ry()));
 
     }
 
