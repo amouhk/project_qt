@@ -110,5 +110,6 @@ bool MainWindow::fileSaveAs()
         {
             showMessage(QString("File %1 is not written yet").arg(l_outputFilename));
         }
+        return true;
     }
 }
