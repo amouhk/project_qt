@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     commandstationadd.cpp \
     commandstationdelete.cpp \
     commandstationmove.cpp \
-    undocommand.cpp
+    undocommand.cpp \
+    scenexmlcontenthandler.cpp
 
 HEADERS  += mainwindow.h \
     scene.h \
@@ -27,6 +28,7 @@ HEADERS  += mainwindow.h \
     commandstationadd.h \
     commandstationdelete.h \
     commandstationmove.h \
-    undocommand.h
+    undocommand.h \
+    scenexmlcontenthandler.h
 
 FORMS    += mainwindow.ui

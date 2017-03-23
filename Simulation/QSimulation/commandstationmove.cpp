@@ -50,13 +50,13 @@ namespace Model
 
         QDomElement l_posTag;
         // 1ere balise de position
-        l_posTag = doc->createElement(QString("Position-Origin"));
+        l_posTag = doc->createElement(QString("PositionOrigin"));
         l_posTag.setAttribute(QString("X"), m_origin.x());
         l_posTag.setAttribute(QString("Y"), m_origin.y());
         l_moveTag.appendChild(l_posTag);
 
         // 2eme balise de position
-        l_posTag = doc->createElement(QString("Position-Target"));
+        l_posTag = doc->createElement(QString("PositionTarget"));
         l_posTag.setAttribute(QString("X"), m_target.x());
         l_posTag.setAttribute(QString("Y"), m_target.y());
         l_moveTag.appendChild(l_posTag);

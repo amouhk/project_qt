@@ -51,7 +51,7 @@ namespace Model
         QDomElement l_delTag  = doc->createElement(QString("DELETE"));
 
         // creer un balise de position
-        QDomElement lp_posTag = doc->createElement("Position");
+        QDomElement lp_posTag = doc->createElement(QString("PositionDEL"));
         lp_posTag.setAttribute(QString("X"), mp_station->x());
         lp_posTag.setAttribute(QString("Y"), mp_station->y());
         // ajout de la balise de position a celle de command station

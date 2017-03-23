@@ -5,6 +5,12 @@
 #include <QAction>
 #include <QFileDialog>
 #include <QTextStream>
+#include <QXmlSimpleReader>
+#include <QMessageBox>
+#include <QCloseEvent>
+#include "scenexmlcontenthandler.h"
+
+using namespace Model;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -19,12 +25,22 @@ MainWindow::MainWindow(QWidget *parent) :
     mp_undoView  = 0;
 
     /*** MenuBar ***/
-    QMenu* lp_fileMenu = menuBar()->addMenu(QString("&File"));
-     QAction* lp_saveAction   = lp_fileMenu->addAction(QString("Save ..."), this, SLOT(fileSaveAs()));
+    // Modification du menu File
+    QMenu* lp_fileMenu       = menuBar()->addMenu(QString("&File"));
+    QAction* lp_newAction    = lp_fileMenu->addAction(QString("New"), this, SLOT(fileNew()));
+    QAction* lp_openAction   = lp_fileMenu->addAction(QString("Open ..."), this, SLOT(fileOpen()));
+    QAction* lp_saveAction   = lp_fileMenu->addAction(QString("Save ..."), this, SLOT(fileSave()));
     QAction* lp_saveAsAction = lp_fileMenu->addAction(QString("Save as ..."), this, SLOT(fileSaveAs()));
+    lp_fileMenu->addSeparator();
+    QAction* lp_quitAction   = lp_fileMenu->addAction(QString("Save as ..."), this, SLOT(close()));
+
+    lp_newAction->setShortcut( QKeySequence::New );
+    lp_openAction->setShortcut( QKeySequence::Open );
     lp_saveAction->setShortcut( QKeySequence::Save );
     lp_saveAsAction->setShortcut( QKeySequence::Save );
+    lp_quitAction->setShortcut( QKeySequence::Quit );
 
+    // Modification du menu Edit
     QMenu* l_editMenu = menuBar()->addMenu( "&Edit" );
     QAction* lp_undoAction = mp_undoStack->createUndoAction( this );
     QAction* lp_redoAction = mp_undoStack->createRedoAction( this );
@@ -96,10 +112,60 @@ void MainWindow::showUndoStack()
 }
 
 //--------------------------------------------------------------------------------
+
+bool MainWindow::fileNew()
+{
+  clearSceneDialog(QString("Create new scene"), QString("Create new scene"));
+}
+
+//--------------------------------------------------------------------------------
+
+bool MainWindow::fileOpen()
+{
+    QString l_inputFilename = QFileDialog::getOpenFileName(this, QString("Open File"), QApplication::applicationDirPath(),
+                                 QString("Files (*.xml)"));
+
+    if (l_inputFilename.isEmpty())
+    {
+        showMessage(QString("Fail : Invalid Input filepath"));
+        return false;
+    }
+
+    QFile l_inputFile(l_inputFilename, this);
+
+    if ( ! l_inputFile.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        showMessage(QString("Fail : Can not Open file %1").arg(l_inputFilename));
+        l_inputFile.close();
+        return false;
+    }
+
+    // Parser le fichier xml
+    QXmlSimpleReader l_xmlReader;
+    QXmlInputSource l_xmlSource(&l_inputFile);
+    SceneXmlContentHandler* lp_sceneHandler = new SceneXmlContentHandler(mp_undoStack, mp_scene);
+
+    l_xmlReader.setContentHandler(lp_sceneHandler);
+    l_xmlReader.parse(&l_xmlSource);
+
+    showMessage(QString("Success : Open file %1").arg(l_inputFilename));
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------
+
+bool MainWindow::fileSave()
+{
+    return false;
+}
+
+//--------------------------------------------------------------------------------
+
 bool MainWindow::fileSaveAs()
 {
     QString l_outputFilename = QFileDialog::getSaveFileName(this, QString("Save Station"),
-                                                    QApplication::applicationDirPath(), QString("(*.xml)"));
+                                                    QApplication::applicationDirPath(), QString("Files (*.xml)"));
 
     if (l_outputFilename.isEmpty())
     {
@@ -126,3 +192,54 @@ bool MainWindow::fileSaveAs()
         return true;
     }
 }
+
+//--------------------------------------------------------------------------------
+
+void MainWindow::closeEvent(QCloseEvent * event)
+{
+    clearSceneDialog(QString("Close application"), QString("Close application"));
+}
+
+//--------------------------------------------------------------------------------
+
+//bool MainWindow::quit()
+//{
+//    emit( closeEvent() );
+//}
+
+//--------------------------------------------------------------------------------
+
+void MainWindow::clearSceneDialog(QString label, QString msg)
+{
+    if ( mp_scene != 0 && mp_undoStack != 0 )
+    {
+        if (mp_scene->items().count() < 1)
+        {
+            QMessageBox::information(this, label, msg);
+        }
+        else
+        {
+             // Demander a l'utilisatteur de sauvegarder l'etat.
+            int l_res = QMessageBox::question(this, label,
+                                   QString("Do you want to save this state ?"),
+                                   QMessageBox::Yes, QMessageBox::No);
+
+            if ( l_res == QMessageBox::Yes )
+            {
+                 if ( fileSaveAs() )
+                 {
+                     QMessageBox::information(this, label, QString(" Save Success"));
+                 }
+
+            }
+            else
+            {
+                 QMessageBox::information(this, label, QString("Data lost"));
+            }
+        }
+        mp_scene->clear();
+        mp_undoStack->clear();
+    }
+}
+
+

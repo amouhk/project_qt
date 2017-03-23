@@ -22,10 +22,20 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+
 public slots:
     void showMessage(QString);  /*!< Slot de reception des messages*/
     void showUndoStack();       /*!< Slot de l'action undo */
+
+    bool fileNew();
+    bool fileOpen();
+    bool fileSave();
     bool fileSaveAs();
+    //bool quit(); voir close() inheritant
+
+protected:
+    void clearSceneDialog(QString label, QString msg);
+    virtual void closeEvent(QCloseEvent * event);
 
 private:
     Ui::MainWindow *ui;
