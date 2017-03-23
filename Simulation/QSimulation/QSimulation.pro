@@ -32,3 +32,5 @@ HEADERS  += mainwindow.h \
     scenexmlcontenthandler.h
 
 FORMS    += mainwindow.ui
+
+TRANSLATIONS = simulation_fr.ts simulation_en.ts
