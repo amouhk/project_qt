@@ -1,3 +1,4 @@
 *.o
+*.autosave
 *.pro.user
 Makefile*
