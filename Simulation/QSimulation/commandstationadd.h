@@ -2,7 +2,7 @@
 #define COMMANDSTATIONADD_H
 
 class CommandStationAdd;
-#include <QUndoCommand>
+#include "undocommand.h"
 #include "scene.h"
 
 namespace Model
@@ -10,7 +10,7 @@ namespace Model
 
 
 
-    class CommandStationAdd : public QUndoCommand
+    class CommandStationAdd : public UndoCommand
     {
     public:
         CommandStationAdd(Scene *scene, QPointF point);
@@ -18,7 +18,7 @@ namespace Model
 
         virtual void redo();
         virtual void undo();
-
+        virtual void toXML(QDomDocument* doc, QDomNode* node);
 
     private:
         Scene * mp_scene;

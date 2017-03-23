@@ -2,13 +2,13 @@
 #define COMMANDSTATIONDELETE_H
 
 class CommandStationDelete;
-#include <QUndoCommand>
+#include "undocommand.h"
 #include "station.h"
 #include "scene.h"
 namespace Model
 {
 
-    class CommandStationDelete : public QUndoCommand
+    class CommandStationDelete : public UndoCommand
     {
     public:
         explicit CommandStationDelete(Scene* scene, Station* station);
@@ -16,7 +16,7 @@ namespace Model
 
         virtual void redo();
         virtual void undo();
-
+        virtual void toXML(QDomDocument* doc, QDomNode* node);
        private:
         Scene* mp_scene;
         Station* mp_station;

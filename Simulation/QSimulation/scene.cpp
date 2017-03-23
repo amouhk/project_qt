@@ -43,8 +43,21 @@ namespace Model
         QDomDocument* l_xmlDoc = (QDomDocument*)(node);
 
         // creer la base <scene>
-        QDomElement l_sceneTag = l_xmlDoc->createElement(QString("scene"));
+        QDomElement l_sceneTag = l_xmlDoc->createElement(QString("SCENE"));
         l_xmlDoc->appendChild(l_sceneTag);
+
+        if ( !mp_undoStack->isClean() )
+        {
+            int l_nbCmd = mp_undoStack->count();
+            for (int l_indexCmd = 0; l_indexCmd < l_nbCmd; l_indexCmd++)
+            {
+               UndoCommand* l_undoCommand = (UndoCommand*)mp_undoStack->command(l_indexCmd);
+
+               l_undoCommand->toXML(l_xmlDoc, &l_sceneTag);
+
+                //std::cout << "Toto " << mp_undoStack->command(l_indexCmd)->text().toStdString() << std::endl;
+            }
+        }
 
         // TODO: serealiser plus tard le reste
 

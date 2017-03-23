@@ -11,6 +11,7 @@ namespace Model
         setFlags(QGraphicsItem::ItemIsMovable |
                  QGraphicsItem::ItemIsSelectable |
                  QGraphicsItem::ItemIgnoresTransformations);
+        setOriginPosition(QPointF(x,y));
     }
 
     //---------------------------------------------------------------------------
@@ -59,6 +60,19 @@ namespace Model
    QPointF Station::lastPosition() const
    {
        return m_lastPosition;
+   }
+
+   //---------------------------------------------------------------------------
+
+   void Station::setOriginPosition(QPointF pos)
+   {
+       m_originPosition = pos;
+   }
+
+   //---------------------------------------------------------------------------
+   QPointF Station::originPosition() const
+   {
+       return m_originPosition;
    }
 
 

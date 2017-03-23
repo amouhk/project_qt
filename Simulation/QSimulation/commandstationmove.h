@@ -3,12 +3,12 @@
 class CommandStationMove;
 
 #include "station.h"
-#include <QUndoCommand>
+#include "undocommand.h"
 
 namespace Model
 {
 
-    class CommandStationMove : public QUndoCommand
+    class CommandStationMove : public UndoCommand
     {
     public:
         explicit CommandStationMove(Station* station, QPointF origin, QPointF target);
@@ -16,6 +16,7 @@ namespace Model
 
         virtual void redo();
         virtual void undo();
+        virtual void toXML(QDomDocument* doc, QDomNode* node);
 
     private:
         Station* mp_station;

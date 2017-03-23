@@ -18,13 +18,15 @@ SOURCES += main.cpp\
     station.cpp \
     commandstationadd.cpp \
     commandstationdelete.cpp \
-    commandstationmove.cpp
+    commandstationmove.cpp \
+    undocommand.cpp
 
 HEADERS  += mainwindow.h \
     scene.h \
     station.h \
     commandstationadd.h \
     commandstationdelete.h \
-    commandstationmove.h
+    commandstationmove.h \
+    undocommand.h
 
 FORMS    += mainwindow.ui

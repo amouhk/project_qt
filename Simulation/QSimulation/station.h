@@ -22,8 +22,12 @@ namespace Model
         void setLastPosition(QPointF &pos);
         QPointF lastPosition() const;
 
+        void setOriginPosition(QPointF pos);
+        QPointF originPosition() const;
+
     private:
         QPointF m_lastPosition;
+        QPointF m_originPosition;
     };
 }
 

@@ -4,14 +4,14 @@
 namespace Model
 {
     CommandStationAdd::CommandStationAdd(Scene *scene, QPointF point)
-        : QUndoCommand()
     {
         std::cout << "Create : Station at " << point.rx() << point.ry() << std::endl;
 
         mp_scene   = scene;
         mp_station = new Station(0, point.rx(), point.ry());
 
-        QUndoCommand::setText(QString("Add station at (%1, %2)").arg(point.rx()).arg(point.ry()));
+
+        UndoCommand::setText(QString("Add station at (%1, %2)").arg(point.rx()).arg(point.ry()));
 
     }
 
@@ -44,6 +44,24 @@ namespace Model
     {
         std::cout << "Call : CommandStationAdd::undo" << std::endl;
         mp_scene->removeItem(mp_station);
+    }
+
+    //------------------------------------------------------------------------------------------
+
+    void CommandStationAdd::toXML(QDomDocument* doc, QDomNode* node)
+    {
+        //Creer un balise command station
+        QDomElement l_addTag  = doc->createElement(QString("ADD"));
+
+        // creer un balise de position
+        QDomElement lp_posTag = doc->createElement("Position");
+        lp_posTag.setAttribute(QString("X"), mp_station->originPosition().x());
+        lp_posTag.setAttribute(QString("Y"), mp_station->originPosition().y());
+        // ajout de la balise de position a celle de command station
+        l_addTag.appendChild(lp_posTag);
+
+        // Ajout de la balise command station a son parent
+        node->appendChild(l_addTag);
     }
 
 
