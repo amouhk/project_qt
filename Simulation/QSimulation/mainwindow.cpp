@@ -20,8 +20,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     /*** MenuBar ***/
     QMenu* lp_fileMenu = menuBar()->addMenu(QString("&File"));
-    QAction* lp_saveAction = lp_fileMenu->addAction(QString("Save as ..."), this, SLOT(fileSaveAs()));
-    lp_saveAction->setShortcut(QKeySequence::SaveAs);
+     QAction* lp_saveAction   = lp_fileMenu->addAction(QString("Save ..."), this, SLOT(fileSaveAs()));
+    QAction* lp_saveAsAction = lp_fileMenu->addAction(QString("Save as ..."), this, SLOT(fileSaveAs()));
+    lp_saveAction->setShortcut( QKeySequence::Save );
+    lp_saveAsAction->setShortcut( QKeySequence::Save );
 
     QMenu* l_editMenu = menuBar()->addMenu( "&Edit" );
     QAction* lp_undoAction = mp_undoStack->createUndoAction( this );
