@@ -90,7 +90,7 @@ namespace Model
                 mp_undoStack->push(lp_addCommand);
 
                 // Emission du message pour la status bar.
-                QString l_message("Add Station at %1 %2");
+                QString l_message = QString(tr("Add Station at %1 %2"));
                 emit( message(l_message.arg(l_x).arg(l_y)));
             }
 
@@ -109,7 +109,7 @@ namespace Model
             QPointF l_currentPosition(mouseEvent->scenePos().rx(), mouseEvent->scenePos().ry());
 
             // Emission du message pour la status bar.
-            QString l_message("Move Station at %1 %2 to %3 %4");
+            QString l_message = QString(tr("Move Station at %1 %2 to %3 %4"));
             emit( message(l_message.arg(mp_selectedStation->lastPosition().rx()).arg(mp_selectedStation->lastPosition().ry())
                                     .arg(l_currentPosition.rx()).arg(l_currentPosition.ry())));
 
@@ -131,7 +131,7 @@ namespace Model
     void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent)
     {
         // Emission du message pour la status bar.
-        QString l_message("Clicked at %1 %2");
+        QString l_message = QString(tr("Clicked at %1 %2"));
         emit( message(l_message.arg(mouseEvent->scenePos().rx()).arg(mouseEvent->scenePos().ry())));
 
         if (mp_selectedStation != 0)
@@ -139,7 +139,7 @@ namespace Model
             QPointF l_currentPosition(mouseEvent->scenePos().rx(), mouseEvent->scenePos().ry());
 
             // Emission du message pour la status bar.
-            QString l_message("Moving Station : %1 %2 ");
+            QString l_message = QString(tr("Moving Station : %1 %2 "));
             emit( message(l_message.arg(l_currentPosition.rx()).arg(l_currentPosition.ry())));
         }
 
@@ -163,7 +163,7 @@ namespace Model
         if (mp_selectedStation != 0)
         {
             std::cout << " Menu Delete selected : not empty " << std::endl;
-            lp_deleteAction = l_deleteMenu.addAction("Delete Station");
+            lp_deleteAction = l_deleteMenu.addAction(QString(tr("Delete Station")));
 
             // Exec thread bloquante pour l'usager
             if ( l_deleteMenu.exec(ctxEvent->screenPos()) ==  lp_deleteAction)
@@ -171,7 +171,7 @@ namespace Model
                 CommandStationDelete* cmdStationDel = new CommandStationDelete(this, mp_selectedStation);
                 mp_undoStack->push(cmdStationDel);
 
-                emit( message(QString("Delete Station at %1 %2").arg(l_currentPosition.rx())
+                emit( message(QString(tr("Delete Station at %1 %2")).arg(l_currentPosition.rx())
                                                                 .arg(l_currentPosition.ry())));
             }
             mp_selectedStation = 0;

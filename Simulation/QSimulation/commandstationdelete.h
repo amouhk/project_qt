@@ -8,8 +8,10 @@ class CommandStationDelete;
 namespace Model
 {
 
-    class CommandStationDelete : public UndoCommand
+    class CommandStationDelete : public UndoCommand//, public QObject
     {
+       // Q_OBJECT
+
     public:
         explicit CommandStationDelete(Scene* scene, Station* station);
         virtual ~CommandStationDelete();

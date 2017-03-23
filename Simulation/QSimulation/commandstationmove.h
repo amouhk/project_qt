@@ -8,8 +8,11 @@ class CommandStationMove;
 namespace Model
 {
 
-    class CommandStationMove : public UndoCommand
+    class CommandStationMove : public UndoCommand//, public QObject
     {
+
+       // Q_OBJECT
+
     public:
         explicit CommandStationMove(Station* station, QPointF origin, QPointF target);
         virtual ~CommandStationMove();

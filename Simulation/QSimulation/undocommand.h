@@ -5,6 +5,7 @@ class UndoCommand;
 #include <QUndoCommand>
 #include <QDomNode>
 #include <QDomDocument>
+#include <QObject>
 
 namespace Model
 {

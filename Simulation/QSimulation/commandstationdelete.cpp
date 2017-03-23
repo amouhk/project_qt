@@ -11,7 +11,7 @@ namespace Model
 
         mp_scene   = scene;
         mp_station = station;
-        UndoCommand::setText(QString("Delete Station at (%1, %2)").arg(mp_station->x()).arg(mp_station->y()));
+        UndoCommand::setText(QString(QObject::tr("Delete Station at (%1, %2)").arg(mp_station->x()).arg(mp_station->y())));
 
     }
 

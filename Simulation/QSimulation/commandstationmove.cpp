@@ -13,8 +13,8 @@ namespace Model
         m_origin   = origin;
         m_target   = target;
 
-        UndoCommand::setText(QString("Move Station from (%1, %2) to (%3, %4)").arg(origin.rx())
-                                            .arg(origin.ry()).arg(target.rx()).arg(target.ry()));
+        UndoCommand::setText(QString(QObject::tr("Move Station from (%1, %2) to (%3, %4)").arg(origin.rx())
+                                            .arg(origin.ry()).arg(target.rx()).arg(target.ry())));
     }
 
     //-------------------------------------------------------------

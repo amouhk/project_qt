@@ -11,7 +11,7 @@ namespace Model
         mp_station = new Station(0, point.rx(), point.ry());
 
 
-        UndoCommand::setText(QString("Add station at (%1, %2)").arg(point.rx()).arg(point.ry()));
+        UndoCommand::setText(QString(QObject::tr("Add station at (%1, %2)").arg(point.rx()).arg(point.ry())));
 
     }
 

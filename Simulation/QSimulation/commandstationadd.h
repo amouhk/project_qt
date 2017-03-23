@@ -12,6 +12,7 @@ namespace Model
 
     class CommandStationAdd : public UndoCommand
     {
+
     public:
         CommandStationAdd(Scene *scene, QPointF point);
         virtual ~CommandStationAdd();
