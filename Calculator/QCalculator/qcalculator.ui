@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>368</width>
-    <height>392</height>
+    <width>365</width>
+    <height>323</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>20</y>
+      <y>10</y>
       <width>61</width>
       <height>31</height>
      </rect>
@@ -31,7 +31,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>80</y>
+      <y>70</y>
       <width>61</width>
       <height>16</height>
      </rect>
@@ -44,7 +44,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>130</y>
+      <y>120</y>
       <width>46</width>
       <height>13</height>
      </rect>
@@ -57,7 +57,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>180</y>
+      <y>170</y>
       <width>46</width>
       <height>13</height>
      </rect>
@@ -83,17 +83,17 @@
     <property name="geometry">
      <rect>
       <x>120</x>
-      <y>30</y>
+      <y>20</y>
       <width>181</width>
       <height>22</height>
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="Var1LineEdit">
+   <widget class="QLineEdit" name="var1LineEdit">
     <property name="geometry">
      <rect>
       <x>120</x>
-      <y>80</y>
+      <y>70</y>
       <width>181</width>
       <height>20</height>
      </rect>
@@ -103,7 +103,7 @@
     <property name="geometry">
      <rect>
       <x>120</x>
-      <y>130</y>
+      <y>120</y>
       <width>181</width>
       <height>20</height>
      </rect>
@@ -113,7 +113,7 @@
     <property name="geometry">
      <rect>
       <x>120</x>
-      <y>180</y>
+      <y>170</y>
       <width>181</width>
       <height>20</height>
      </rect>
@@ -138,7 +138,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>368</width>
+     <width>365</width>
      <height>21</height>
     </rect>
    </property>

@@ -13,8 +13,11 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        qcalculator.cpp
+        qcalculator.cpp \
+    operationmanager.cpp
 
-HEADERS  += qcalculator.h
+HEADERS  += qcalculator.h \
+    operationmanager.h \
+    OperationInterface.h
 
 FORMS    += qcalculator.ui
