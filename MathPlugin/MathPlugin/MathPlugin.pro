@@ -4,15 +4,17 @@
 #
 #-------------------------------------------------
 
-QT       += core
-
 QT       -= gui
 
 TARGET = MathPlugin
-CONFIG   += console
-CONFIG   -= app_bundle
+DEFINES = MATHPLUGIN_LIBRARY
 
-TEMPLATE = app
+TEMPLATE = lib
 
 
-SOURCES += main.cpp
+SOURCES += \
+    mathplugin.cpp
+
+HEADERS += \
+    mathplugin.h \
+    OperationInterface.h
