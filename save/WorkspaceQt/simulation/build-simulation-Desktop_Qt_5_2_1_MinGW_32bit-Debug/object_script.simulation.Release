@@ -1,0 +1,13 @@
+INPUT(
+./release\main.o
+./release\mainwindow.o
+./release\scene.o
+./release\station.o
+./release\commandstationadd.o
+./release\commandstationdelete.o
+./release\commandstationmove.o
+./release\undocommand.o
+./release\scenehandler.o
+./release\moc_mainwindow.o
+./release\moc_scene.o
+);

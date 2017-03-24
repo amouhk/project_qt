@@ -1,0 +1,17 @@
+<scene>
+ <command-station-add x="11" y="15"/>
+ <command-station-add x="44" y="13"/>
+ <command-station-add x="84" y="14"/>
+ <command-station-add x="129" y="14"/>
+ <command-station-add x="186" y="14"/>
+ <command-station-add x="228" y="14"/>
+ <command-station-delete x="186" y="14"/>
+ <command-station-move originX="128" originY="11" targetX="370" targetY="208"/>
+ <command-station-move originX="225" originY="13" targetX="327" targetY="205"/>
+ <command-station-delete x="84" y="14"/>
+ <command-station-move originX="45" originY="10" targetX="141" targetY="207"/>
+ <command-station-move originX="10" originY="15" targetX="56" targetY="208"/>
+ <command-station-add x="77" y="59"/>
+ <command-station-add x="163" y="53"/>
+ <command-station-move originX="74" originY="55" targetX="259" targetY="98"/>
+</scene>

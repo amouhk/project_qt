@@ -1,0 +1,13 @@
+INPUT(
+./debug\main.o
+./debug\mainwindow.o
+./debug\scene.o
+./debug\station.o
+./debug\commandstationadd.o
+./debug\commandstationdelete.o
+./debug\commandstationmove.o
+./debug\undocommand.o
+./debug\scenehandler.o
+./debug\moc_mainwindow.o
+./debug\moc_scene.o
+);
